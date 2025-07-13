@@ -1,9 +1,5 @@
-provider "aws" {
-  region = "us-east-1"
-}
-
 resource "aws_s3_bucket" "dev" {
-  bucket = "dev-${random_id.value.hex}"
+  bucket = "dev-${random_id.s3_bucket_suffix.hex}"
 
   tags = {
     Name        = "Dev bucket"
@@ -11,6 +7,6 @@ resource "aws_s3_bucket" "dev" {
   }
 }
 
-resource "random_id" "value" {
+resource "random_id" "s3_bucket_suffix" {
   byte_length = 8
 }

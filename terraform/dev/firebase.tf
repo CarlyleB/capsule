@@ -49,3 +49,12 @@ resource "google_firebase_project" "dev_firebase" {
     google_project_service.serviceusage,
   ]
 }
+
+# Create a Firebase Web App in the new project created above.
+resource "google_firebase_web_app" "dev" {
+  provider = google-beta
+
+  project      = google_firebase_project.dev_firebase.project
+  display_name = "Curated"
+  deletion_policy = "DELETE"
+}
